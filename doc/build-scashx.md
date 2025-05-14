@@ -98,6 +98,30 @@ make install
 
 The compiled executables will be found in `depends/x86_64-pc-linux-gnu/bin/` and can be copied to a folder on your path, typically `/usr/local/bin/` or `$HOME/.local/bin/`.
 
+## Building for Windows (by cross-compiling on Linux)
+
+Build on Linux and generate executables which run on Windows.
+
+```
+sudo apt install g++-mingw-w64-x86-64-posix
+cd depends/
+make HOST=x86_64-w64-mingw32
+cd ..
+./autogen.sh
+./configure --prefix=$PWD/depends/x86_64-w64-mingw32 --program-transform-name='s/bitcoin/scashx/g'
+make
+make install
+```
+
+The windows executables will be found in `depends/x86_64-w64-mingw32/bin/`.
+
+To generate a Windows installer:
+
+```
+sudo apt install nsis
+make deploy
+```
+
 ## Config file
 
 The ScashX configuration file is the same as bitcoin.conf.
