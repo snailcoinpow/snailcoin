@@ -14,14 +14,14 @@ For detailed information on the specific technical modifications the new chain o
 
 ### Binary Releases (Recommended for most users)
 
-Pre-compiled binaries are the quickest way to set up and run ScashX.
+Pre-compiled binaries are the quickest way to set up and run ScashX. Single click install available for Windows.
 
 **Download:** https://github.com/scashx/scashx/releases
 
 * **Supported Platforms for Binaries:**
-  * **Linux** (daemon 'scashxd')
-  * **Windows** (GUI application 'scashx-qt').
+  * **Windows** (GUI application 'scashx-qt', single click install).
   * **Windows WSL** (The Linux binaries can also be run on [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about)).
+  * **Linux** (daemon 'scashxd')
 * **Currently Unsupported**
   * **maxOS+**
 
