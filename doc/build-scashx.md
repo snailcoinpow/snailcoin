@@ -185,7 +185,17 @@ To send commands to the ScashX node:
 scashx-cli [COMMAND] [PARAMETERS]
 ```
 
+To run the desktop GUI app:
 ```
+scash-qt
+```
+
+On WSL for Windows, launching `scash-qt` may require installing the following dependencies. Also see [WSL Gui Apps](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps).
+
+```
+sudo apt install libxcb-* libxkbcommon-x11-0
+```
+
 Also note that in WSL for Windows, by default only half of the memory is available to WSL. You can [configure the memory limit](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#main-wsl-settings) by creating `.wslconfig` file in your user folder.
 ```
 [wsl2]
