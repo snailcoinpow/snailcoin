@@ -92,8 +92,12 @@ std::string CopyrightHolders(const std::string& strPrefix)
         strCopyrightHolders += "\n" + strPrefix + "The Bitcoin Core developers";
     }
 
+    if (copyright_devs.find("Scash") == std::string::npos) {
+        strCopyrightHolders += "\nCopyright (C) 2024 The Scash developers";
+    }
+
     if (copyright_devs.find("ScashX") == std::string::npos) {
-        strCopyrightHolders += "\nCopyright (C) 2024 The Satoshi Cash-X developers";
+        strCopyrightHolders += "\nCopyright (C) 2025 The Satoshi Cash-X developers";
     }
     return strCopyrightHolders;
 }

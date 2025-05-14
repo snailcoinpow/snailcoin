@@ -46,7 +46,7 @@
    <item>
     <widget class="QLabel" name="storageLabel">
      <property name="text">
-      <string>As this is the first time the program is launched, you can choose where %1 will store its data.</string>
+      <string>When you first open %1, you can choose a folder on your computer to save its data. This includes your wallets and a copy of the %1 blockchain.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -203,7 +203,7 @@
    <item>
     <widget class="QLabel" name="lblExplanation1">
      <property name="text">
-      <string>When you click OK, %1 will begin to download and process the full %4 block chain (%2 GB) starting with the earliest transactions in %3 when %4 initially launched.</string>
+      <string>Click OK to start downloading the %1 blockchain. It begins with the first transactions from %2 .</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -213,7 +213,7 @@
    <item>
     <widget class="QLabel" name="lblExplanation2">
      <property name="text">
-      <string>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</string>
+      <string>This first download takes a while and uses a lot of your computer's resources. After it's done, %1 will start much faster each time, picking up where it left off.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
