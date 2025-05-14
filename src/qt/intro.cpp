@@ -24,6 +24,7 @@
 #include <QFileDialog>
 #include <QSettings>
 #include <QMessageBox>
+#include <QCoreApplication>
 
 #include <cmath>
 
@@ -134,9 +135,7 @@ Intro::Intro(QWidget *parent, int64_t blockchain_size_gb, int64_t chain_state_si
 
     ui->lblExplanation1->setText(ui->lblExplanation1->text()
         .arg(PACKAGE_NAME)
-        .arg(m_blockchain_size_gb)
-        .arg(2009)
-        .arg(tr("ScashX"))
+        .arg(tr("January 2025"))
     );
     ui->lblExplanation2->setText(ui->lblExplanation2->text().arg(PACKAGE_NAME));
 
@@ -246,6 +245,15 @@ bool Intro::showIfNeeded(bool& did_show_intro, int64_t& prune_MiB)
                     // If a new data directory has been created, make wallets subdirectory too
                     TryCreateDirectories(GUIUtil::QStringToPath(dataDir) / "wallets");
                 }
+
+#ifdef WIN32
+                QString appPath = QCoreApplication::applicationDirPath();
+                fs::path source = GUIUtil::QStringToPath(appPath) / "scashx.conf (live)";
+                fs::path destination = GUIUtil::QStringToPath(dataDir) / "scashx.conf";
+
+                fs::copy_file(source, destination, fs::copy_options::overwrite_existing);
+#endif
+
                 break;
             } catch (const fs::filesystem_error&) {
                 QMessageBox::critical(nullptr, PACKAGE_NAME,
@@ -376,11 +384,11 @@ QString Intro::getPathToCheck()
 
 void Intro::UpdatePruneLabels(bool prune_checked)
 {
-    m_required_space_gb = m_blockchain_size_gb + m_chain_state_size_gb;
-    QString storageRequiresMsg = tr("At least %1 GB of data will be stored in this directory, and it will grow over time.");
+    // m_required_space_gb = m_blockchain_size_gb + m_chain_state_size_gb;
+    QString storageRequiresMsg = tr("At least 40 MB of space is needed. This will grow as new blocks are added.");
     if (prune_checked && m_prune_target_gb <= m_blockchain_size_gb) {
-        m_required_space_gb = m_prune_target_gb + m_chain_state_size_gb;
-        storageRequiresMsg = tr("Approximately %1 GB of data will be stored in this directory.");
+        // m_required_space_gb = m_prune_target_gb + m_chain_state_size_gb;
+        storageRequiresMsg = tr("Approximately 40 MB of data will be stored in this directory.");
     }
     ui->lblExplanation3->setVisible(prune_checked);
     ui->pruneGB->setEnabled(prune_checked);
@@ -391,9 +399,9 @@ void Intro::UpdatePruneLabels(bool prune_checked)
         //: Explanatory text on the capability of the current prune target.
         tr("(sufficient to restore backups %n day(s) old)", "", expected_backup_days));
     ui->sizeWarningLabel->setText(
-        tr("%1 will download and store a copy of the ScashX block chain.").arg(PACKAGE_NAME) + " " +
-        storageRequiresMsg.arg(m_required_space_gb) + " " +
-        tr("The wallet will also be stored in this directory.")
+        tr("%1 will download the blockchain.").arg(PACKAGE_NAME) + " " +
+        storageRequiresMsg.arg(m_required_space_gb)
+        // tr("The wallet will also be stored in this directory.")
     );
     this->adjustSize();
 }

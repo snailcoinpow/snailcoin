@@ -1,38 +1,49 @@
 # SCASHX BUILD NOTES
 
-## ScashX: Bitcoin Fork for Home Mining
+## ScashX: Bitcoin Fork for Accessible Home Mining
 
-ScashX (Satoshi Cash-X) is a modified fork of Bitcoin Core v27.0 which adds a new chain option to make cryptocurrency mining feasible again on standard home computers.
+**ScashX (Satoshi Cash-X)** is a cryptocurrency project forked from Bitcoin Core v27.0. Its primary innovation is the introduction of a new chain option designed to make cryptocurrency mining viable and efficient on standard home computer hardware.
 
 ## Technical Foundation
 
-Built upon Bitcoin Core v27.0, ScashX shares its core features and rules. For specific technical changes, please refer to the ScashX Protocol spec [ScashX Protocol spec](https://github.com/scashx/scashx/blob/scashx_master/doc/scashx-protocol-spec.md).
+ScashX is built upon the robust and secure foundation of Bitcoin Core v27.0, inheriting its core features and fundamental consensus rules. The key distinction lies in ScashX's modified protocol, which facilitates a more accessible mining experience, enabling individuals to participate effectively without requiring specialized, high-power mining equipment.
 
-## Availability and Building
+For detailed information on the specific technical modifications the new chain option, and protocol details, please refer to the [ScashX Protocol Specification](https://github.com/scashx/scashx/blob/scashx_master/doc/scashx-protocol-spec.md).
 
-Binary releases: https://github.com/scashx/scashx/releases
+## Availability and Buiilding
 
-Building ScashX follows the same instructions as building Bitcoin. The ScashX network shares the same features and rules as Bitcoin mainnet, as specified in Bitcoin Core v27.0.
+### Binary Releases (Recommended for most users)
 
-### Linux
+Pre-compiled binaries are the quickest way to set up and run ScashX.
 
-The Linux version of the node (`scashxd`) is supported and also runs in Ubuntu on [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/about).
+**Download:** https://github.com/scashx/scashx/releases
 
-### Windows
+* **Supported Platforms for Binaries:**
+  * **Linux** (daemon 'scashxd')
+  * **Windows** (GUI application 'scashx-qt').
+  * **Windows WSL** (The Linux binaries can also be run on [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about)).
+* **Currently Unsupported**
+  * **maxOS+**
 
-Windows users will build from source by running Ubuntu WSL and following the Linux instructions.
+### Building from Source
+If you prefer to compile ScashX yourself the build process is similar to that of Bitcoin Core (see instructions below). Detailed, step-by-step guidance can be also be found in [build-unix.md](https://github.com/scashx/scashx/blob/scashx_master/doc/build-unix.md). By following these instructions, building from source typically takes approximately ten minutes, depending on your system's performance.
 
-### Other Platforms
+* **Supported Platforms for Building:**
+  * **Linux:** (Ubuntu is recommended, although other Unix-like distributions may also work).
+  * **WSL on Windows:** Users can build the Linux version from source by running an Ubuntu environment within WSL and following the Linux build instructions (below).
 
-A GUI app `scashx-qt` will be supported in a future release, with Windows binaries made available (cross-compiled on Linux). MacOS is not yet supported.
+### Platform-Specific Information
 
-# Building
+* **Windows:**
+  * `scashx-qt`: The graphical user interface (GUI) wallet and node. This is typically cross-compiled on Linux for Windows.
+* **Linux / WSL:**
+  * `scashxd`: The command-line daemon for running a node.
+  * `scashx-cli`: The command-line client for the node.
 
-The instructions in this document are sufficient for a rapid install of ScashX, taking approximately ten minutes, depending on processor performance. For more specific instructions on building, see [`build-unix.md`](build-unix.md) in this directory.
+## Further Information
+For the latest updates, new features, bug fixes, and detailed changes in each version, please consult the [ScashX Release Notes](release-notes/scashx/).
 
-Also see the latest [ScashX release notes](release-notes/scashx/).
-
-## Getting started 
+# Getting Started 
 
 Update your system and install the following tools required to build software.
 
@@ -86,6 +97,30 @@ make install
 ### Executables
 
 The compiled executables will be found in `depends/x86_64-pc-linux-gnu/bin/` and can be copied to a folder on your path, typically `/usr/local/bin/` or `$HOME/.local/bin/`.
+
+## Building for Windows (by cross-compiling on Linux)
+
+Build on Linux and generate executables which run on Windows.
+
+```
+sudo apt install g++-mingw-w64-x86-64-posix
+cd depends/
+make HOST=x86_64-w64-mingw32
+cd ..
+./autogen.sh
+./configure --prefix=$PWD/depends/x86_64-w64-mingw32 --program-transform-name='s/bitcoin/scashx/g'
+make
+make install
+```
+
+The windows executables will be found in `depends/x86_64-w64-mingw32/bin/`.
+
+To generate a Windows installer:
+
+```
+sudo apt install nsis
+make deploy
+```
 
 ## Config file
 
