@@ -26,7 +26,7 @@ Pre-compiled binaries are the quickest way to set up and run ScashX. Single clic
   * **maxOS+**
 
 ### Building from Source
-If you prefer to compile ScashX yourself the build process is similar to that of Bitcoin Core (see instructions below). Detailed, step-by-step guidance can be also be found in [build-unix.md](https://github.com/scashx/scashx/blob/scashx_master/doc/build-unix.md). By following these instructions, building from source typically takes approximately ten minutes, depending on your system's performance.
+If you prefer to compile ScashX yourself the build process is similar to that of Bitcoin Core (see install instructions detailed below) and takes approximately 5-15 minutes depending on your system performance. Detailed, step-by-step guidance can be also be found in [build-unix.md](https://github.com/scashx/scashx/blob/scashx_master/doc/build-unix.md) but there should be no need to refer to this for the default install on Linux (Ubuntu).
 
 * **Supported Platforms for Building:**
   * **Linux:** (Ubuntu is recommended, although other Unix-like distributions may also work).
@@ -124,38 +124,71 @@ make deploy
 
 ## Config file
 
-The ScashX configuration file is the same as bitcoin.conf.
+The ScashX configuration file is the same as bitcoin.conf, a default ScashX configuration file is provided below.
 
-By default, Scash looks for a configuration file here:
+### Unix
+
+By default, ScashX looks for a configuration file on unix here:
 `$HOME/.scashx/scashx.conf`
+
+### Windows
+
+ScashX stores its data (your blockchain, wallet, and configuration files) in a hidden folder within your user profile. This is standard practice for applications.
+
+You can quickly access this folder which will also contain your wallets and blockchain data by following these steps:
+
+* Open File Explorer (you can press Win + E).
+
+* Type `%APPDATA%\ScashX` into the address bar at the top of the File Explorer window. Press Enter.
+
+This will directly open the ScashX data folder where the scashx.conf should be placed, typically: `\C:\Users\YourUsername\AppData\Roaming\ScashX`
+
+(where YourUsername will be your specific Windows user profile name).
+
+Note: The AppData folder is usually hidden by default in Windows. If you need to navigate to it manually, ensure you enable "Hidden items" under the "View" tab in File Explorer.
+
+After running the GUI you can check that the correct config setting is loading in the Settings menu.
+
+### Sample config (default)
 
 The following is a sample `scashx.conf`:
 
 ```
-# Global Settings
+# This is the main ScashX configuration file.
+# Lines starting with '#' are comments.
+
+# --- GLOBAL SETTINGS ---
+# These settings apply to all networks (mainnet, testnet, regtest)
+# unless specifically overridden in their respective sections below.
+
 rpcuser=user
 rpcpassword=password
-chain=scashx
-daemon=0            # Disable running node as daemon
-debug=0             # Disable debug logging
-listen=1            # Enable listen for incoming connections
-txindex=1           # Enable transaction indexing
-randomxfastmode=1   # Enable fast mode for RandomX
-fallbackfee=0.01    # Set fallback fee
+#rpcallowip=0.0.0.0/0         # Uncomment to allow RPC connections from any IP address
 
-# Mainnet Configuration
+daemon=1                      # Run the node as a background daemon process (1=enabled, 0=disabled)
+debug=0                       # Disable debug logging (0=off, 1=on, higher numbers for more verbose)
+listen=1                      # Enable listening for incoming peer-to-peer connections (1=enabled, 0=disabled)
+txindex=1                     # Enable transaction indexing (required for certain RPC calls like getrawtransaction by txid)
+randomxfastmode=1             # Enable fast mode for RandomX (relevant for mining/CPU utilization)
+fallbackfee=0.01              # Set a fallback fee rate (in coins per kB) for transactions
+
+# --- MAINNET CONFIGURATION ---
+# This section defines settings specific to the ScashX mainnet.
 [scashx]
+# DNS seeds help your node find initial peers on the network.
+dnsseed=1
 adddnsseed=seed.scashx.io
 adddnsseed=seed2.scashx.io
 
-# Testnet Configuration
+# --- TESTNET CONFIGURATION ---
+# This section defines settings specific to the ScashX testnet.
 [scashxtestnet]
 addnode=45.76.143.162
 
-# Regtest Configuration
+# --- REGTEST CONFIGURATION ---
+# This section defines settings specific to the ScashX regtest (regression test) network.
 [scashxregtest]
 addnode=45.76.143.162
-
 ```
 
 ### Connecting to the network
@@ -175,6 +208,10 @@ If you intend to use the same configuration file with multiple networks, the con
 
 ## Running a node
 
+Note: The first time you run the node it may take several minutes to synchronise with the ScashX network (check the GUI status in Windows). Synchronisation must complete before commencing mining.
+
+### Unix
+
 To run the ScashX node:
 ```bash
 scashxd
@@ -185,7 +222,9 @@ To send commands to the ScashX node:
 scashx-cli [COMMAND] [PARAMETERS]
 ```
 
-To run the desktop GUI app:
+### Windows
+
+Run the GUI app from the start menu or:
 ```
 scash-qt
 ```
