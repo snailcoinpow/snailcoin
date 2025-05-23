@@ -1,24 +1,35 @@
-# Global Settings
+# This is the main ScashX configuration file.
+# Lines starting with '#' are comments.
+
+# --- GLOBAL SETTINGS ---
+# These settings apply to all networks (mainnet, testnet, regtest)
+# unless specifically overridden in their respective sections below.
+
 rpcuser=user
 rpcpassword=password
-chain=scashx
-daemon=0            # Disable running node as daemon
-debug=0            # Disable debug logging
-listen=1            # Enable listen for incoming connections
-txindex=1           # Enable transaction indexing
-randomxfastmode=1   # Enable fast mode for RandomX
-fallbackfee=0.01    # Set fallback fee
+#rpcallowip=0.0.0.0/0         # Uncomment to allow RPC connections from any IP address
 
-# Mainnet Configuration
+daemon=1                      # Run the node as a background daemon process (1=enabled, 0=disabled)
+debug=0                       # Disable debug logging (0=off, 1=on, higher numbers for more verbose)
+listen=1                      # Enable listening for incoming peer-to-peer connections (1=enabled, 0=disabled)
+txindex=1                     # Enable transaction indexing (required for certain RPC calls like getrawtransaction by txid)
+randomxfastmode=1             # Enable fast mode for RandomX (relevant for mining/CPU utilization)
+fallbackfee=0.01              # Set a fallback fee rate (in coins per kB) for transactions
+
+# --- MAINNET CONFIGURATION ---
+# This section defines settings specific to the ScashX mainnet.
 [scashx]
+# DNS seeds help your node find initial peers on the network.
 dnsseed=1
 adddnsseed=seed.scashx.io
 adddnsseed=seed2.scashx.io
 
-# Testnet Configuration
+# --- TESTNET CONFIGURATION ---
+# This section defines settings specific to the ScashX testnet.
 [scashxtestnet]
 addnode=45.76.143.162
 
-# Regtest Configuration
+# --- REGTEST CONFIGURATION ---
+# This section defines settings specific to the ScashX regtest (regression test) network.
 [scashxregtest]
 addnode=45.76.143.162

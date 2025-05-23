@@ -483,7 +483,7 @@ QVariant OptionsModel::getOption(OptionID option, const std::string& suffix) con
     case Listen:
         return SettingToBool(setting(), DEFAULT_LISTEN);
     case Server:
-        return SettingToBool(setting(), false);
+        return SettingToBool(setting(), true);
     case MaskValues:
         return m_mask_values;
     default:
