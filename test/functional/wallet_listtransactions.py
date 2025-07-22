@@ -28,11 +28,9 @@ class ListTransactionsTest(BitcoinTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 3
-        # This test isn't testing txn relay/timing, so set whitelist on the
-        # peers for instant txn relay. This speeds up the test run time 2-3x.
-        self.extra_args = [["-whitelist=noban@127.0.0.1", "-walletrbf=0"]] * self.num_nodes
-        for args in self.extra_args:
-            args.append("-datacarrier=1")
+        # whitelist peers to speed up tx relay / mempool sync
+        self.noban_tx_relay = True
+        self.extra_args = [["-walletrbf=0"]] * self.num_nodes
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -334,4 +332,4 @@ class ListTransactionsTest(BitcoinTestFramework):
 
 
 if __name__ == '__main__':
-    ListTransactionsTest().main()
+    ListTransactionsTest(__file__).main()

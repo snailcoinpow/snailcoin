@@ -166,6 +166,7 @@ std::list<SectionInfo> ArgsManager::GetUnrecognizedSections() const
         ChainTypeToString(ChainType::REGTEST),
         ChainTypeToString(ChainType::SIGNET),
         ChainTypeToString(ChainType::TESTNET),
+        ChainTypeToString(ChainType::TESTNET4),
         ChainTypeToString(ChainType::MAIN),
     };
 
@@ -692,9 +693,23 @@ std::string HelpMessageOpt(const std::string &option, const std::string &message
            std::string("\n\n");
 }
 
+const std::vector<std::string> TEST_OPTIONS_DOC{
+    "addrman (use deterministic addrman)",
+};
+
+bool HasTestOption(const ArgsManager& args, const std::string& test_option)
+{
+    const auto options = args.GetArgs("-test");
+    return std::any_of(options.begin(), options.end(), [test_option](const auto& option) {
+        return option == test_option;
+    });
+}
+
 fs::path GetDefaultDataDir()
 {
-    // Windows: C:\Users\Username\AppData\Roaming\Bitcoin
+    // Windows:
+    //   old: C:\Users\Username\AppData\Roaming\Bitcoin
+    //   new: C:\Users\Username\AppData\Local\Bitcoin
     // macOS: ~/Library/Application Support/Bitcoin
     // Unix-like: ~/.bitcoin
 #ifdef WIN32
@@ -764,10 +779,11 @@ std::variant<ChainType, std::string> ArgsManager::GetChainArg() const
     const bool fRegTest = get_net("-regtest");
     const bool fSigNet  = get_net("-signet");
     const bool fTestNet = get_net("-testnet");
+    const bool fTestNet4 = get_net("-testnet4");
     const auto chain_arg = GetArg("-chain");
 
-    if ((int)chain_arg.has_value() + (int)fRegTest + (int)fSigNet + (int)fTestNet > 1) {
-        throw std::runtime_error("Invalid combination of -regtest, -signet, -testnet and -chain. Can use at most one.");
+    if ((int)chain_arg.has_value() + (int)fRegTest + (int)fSigNet + (int)fTestNet + (int)fTestNet4 > 1) {
+        throw std::runtime_error("Invalid combination of -regtest, -signet, -testnet, -testnet4 and -chain. Can use at most one.");
     }
     if (chain_arg) {
         if (auto parsed = ChainTypeFromString(*chain_arg)) return *parsed;
@@ -777,13 +793,14 @@ std::variant<ChainType, std::string> ArgsManager::GetChainArg() const
     if (fRegTest) return ChainType::REGTEST;
     if (fSigNet) return ChainType::SIGNET;
     if (fTestNet) return ChainType::TESTNET;
+    if (fTestNet4) return ChainType::TESTNET4;
 
     const bool fScashXMain = get_net("-scashx");
     const bool fScashXRegTest = get_net("-scashxregtest");
     const bool fScashXTestnet = get_net("-scashxtestnet");
 
-    if ((int)chain_arg.has_value() + (int)fScashXMain + (int)fScashXTestnet + (int)fScashXRegTest + (int)fRegTest + (int)fSigNet + (int)fTestNet > 1) {
-        throw std::runtime_error("Invalid combination of -scashx, -scashxregtest, -scashxtestnet, -regtest, -signet, -testnet and -chain. Can use at most one.");
+    if ((int)chain_arg.has_value() + (int)fScashXMain + (int)fScashXTestnet + (int)fScashXRegTest + (int)fRegTest + (int)fSigNet + (int)fTestNet + (int)fTestNet4 > 1) {
+        throw std::runtime_error("Invalid combination of -scashx, -scashxregtest, -scashxtestnet, -regtest, -signet, -testnet, -testnet4 and -chain. Can use at most one.");
     }
 
     if (fScashXMain) return ChainType::SCASHXMAIN;
