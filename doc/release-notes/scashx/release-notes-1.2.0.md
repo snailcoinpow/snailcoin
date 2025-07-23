@@ -42,14 +42,20 @@ ScashX is supported and tested on operating systems using the Linux kernel and o
 ScashX should also work on most other Unix-like systems but is not as frequently tested
 on them.  It is not recommended to use ScashX on unsupported systems.
 
-ScashX is based on Bitcoin Core 28.1. See a list of changes in the [Bitcoin Release Notes](https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-28.1.md).
+ScashX is based on Bitcoin Core 28.1. See a complete list of changes in the [Bitcoin Release Notes](https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-28.1.md).
 
 Notable changes
 ===============
 
 This Release:
 -------------
-- Upgrade to Bitcoin 28.1
+- Upgrade to Bitcoin 28.1. See [notable changes](https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-28.1.md#notable-changes) to Bitcoin 28.1.
+- When the -port configuration option is used, the default onion listening port will now be derived to be that port + 1 instead of being set to a fixed value (8334 on mainnet). This re-allows setups with multiple local nodes using different -port and not using -bind, which would lead to a startup failure in v28.0 due to a port collision.
+- JSON-RPC 2.0 Support
+- libbitcoinconsensus Removal
+- Previously if Bitcoin Core was listening for P2P connections, either using default settings or via bind=addr:port it would always also bind to 127.0.0.1:8334 to listen for Tor connections. It was not possible to switch this off, even if the node didn't use Tor. This has been changed and now bind=addr:port results in binding on addr:port only. The default behavior of binding to 0.0.0.0:8333 and 127.0.0.1:8334 has not been changed.
+- The wallet now detects when wallet transactions conflict with the mempool. Mempool-conflicting transactions can be seen in the "mempoolconflicts" field of gettransaction. The inputs of mempool-conflicted transactions can now be respent without manually abandoning the transactions when the parent transaction is dropped from the mempool, which can cause wallet balances to appear higher. (#27307)
+- A new createwalletdescriptor RPC allows users to add new automatically generated descriptors to their wallet. This can be used to upgrade wallets created prior to the introduction of a new standard descriptor, such as taproot. (#29130)
   
 Previous Releases:
 ------------------
