@@ -1,5 +1,3 @@
-
-
 1.2.0 Release Notes
 ===================
 
@@ -42,14 +40,14 @@ ScashX is supported and tested on operating systems using the Linux kernel and o
 ScashX should also work on most other Unix-like systems but is not as frequently tested
 on them.  It is not recommended to use ScashX on unsupported systems.
 
-ScashX is based on Bitcoin Core 28.1. See a complete list of changes in the [Bitcoin Release Notes](https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-28.1.md).
+ScashX is based on Bitcoin Core 28.1. See a complete list of changes in the [Bitcoin Release Notes 28.1](https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-28.1.md) and also [Bitcoin Release Notes 28.0](https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-28.0.md).
 
 Notable changes
 ===============
 
 This Release:
 -------------
-- Upgrade to Bitcoin 28.1. See [notable changes](https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-28.1.md#notable-changes) to Bitcoin 28.1.
+- Upgrade to Bitcoin 28.1.
 - When the -port configuration option is used, the default onion listening port will now be derived to be that port + 1 instead of being set to a fixed value (8334 on mainnet). This re-allows setups with multiple local nodes using different -port and not using -bind, which would lead to a startup failure in v28.0 due to a port collision.
 - JSON-RPC 2.0 Support
 - libbitcoinconsensus Removal
