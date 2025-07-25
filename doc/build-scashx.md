@@ -2,11 +2,11 @@
 
 ## ScashX: Bitcoin Fork for Accessible Home Mining
 
-**ScashX (Satoshi Cash-X)** is a cryptocurrency project forked from Bitcoin Core v27.0. Its primary innovation is the introduction of a new chain option designed to make cryptocurrency mining viable and efficient on standard home computer hardware.
+**ScashX (Satoshi Cash-X)** is a cryptocurrency project forked from Bitcoin Core v28.1. Its primary innovation is the introduction of a new chain option designed to make cryptocurrency mining viable and efficient on standard home computer hardware.
 
 ## Technical Foundation
 
-ScashX is built upon the robust and secure foundation of Bitcoin Core v27.0, inheriting its core features and fundamental consensus rules. The key distinction lies in ScashX's modified protocol, which facilitates a more accessible mining experience, enabling individuals to participate effectively without requiring specialized, high-power mining equipment.
+ScashX is built upon the robust and secure foundation of Bitcoin Core v28.1, inheriting its core features and fundamental consensus rules. The key distinction lies in ScashX's modified protocol, which facilitates a more accessible mining experience, enabling individuals to participate effectively without requiring specialized, high-power mining equipment.
 
 For detailed information on the specific technical modifications the new chain option, and protocol details, please refer to the [ScashX Protocol Specification](https://github.com/scashx/scashx/blob/scashx_master/doc/scashx-protocol-spec.md).
 
