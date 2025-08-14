@@ -29,7 +29,7 @@ Pre-compiled binaries are the quickest way to set up and run ScashX. Single clic
   * **maxOS+**
 
 ### Building from Source
-If you prefer to compile ScashX yourself the build process is similar to that of Bitcoin Core and takes approximately 5-15 minutes depending on your system performance. Quick install instructions are in the [build doc]([doc/build-scashx.md](https://github.com/scashx/scashx/blob/scashx_master/doc/build-scashx.md))). More detailed, step-by-step guidance can be found in [build-unix.md](https://github.com/scashx/scashx/blob/scashx_master/doc/build-unix.md) but there should be no need to refer to this for the default install on Linux (Ubuntu).
+If you prefer to compile ScashX yourself the build process is similar to that of Bitcoin Core and takes approximately 5-15 minutes depending on your system performance. Quick install instructions are in the [build doc](https://github.com/scashx/scashx/blob/scashx_master/doc/build-scashx.md)). More detailed, step-by-step guidance can be found in [build-unix.md](https://github.com/scashx/scashx/blob/scashx_master/doc/build-unix.md) but there should be no need to refer to this for the default install on Linux (Ubuntu).
 
 * **Supported Platforms for Building:**
   * **Linux:** (Ubuntu is recommended, although other Unix-like distributions may also work).
