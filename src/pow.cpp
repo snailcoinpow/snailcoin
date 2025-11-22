@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2022 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -76,7 +76,7 @@ static LRURandomXDatasetRef cache_rx_dataset;
  * Source code:
  * https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/blob/4ee1083307d2aaac92dd7c409cc9d6f2eb52be78/src/pow.cpp
  *
- * Any changes to the Bitcoin Cash code because ScashX has a different powlimit are marked with ScashX guards.
+ * Any changes to the Bitcoin Cash code because Snailcoin has a different powlimit are marked with Snailcoin guards.
  */
 
 /**
@@ -185,7 +185,7 @@ arith_uint256 CalculateASERT(const arith_uint256 &refTarget,
     // We need some leading zero bits in powLimit in order to have room to handle
     // overflows easily. 32 leading zero bits is more than enough.
 
-    // ScashX has a higher powLimits and uses uint512 internally, so this check is disabled
+    // Snailcoin has a higher powLimits and uses uint512 internally, so this check is disabled
     // assert((powLimit >> 224) == 0);
 
     // Height diff should NOT be negative.
@@ -434,7 +434,7 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&
 
 
 // Seed string contains an epoch integer and is sha256d hashed to derive the seed hash (RandomX key).
-static const char *RANDOMX_EPOCH_SEED_STRING = "ScashX/RandomX/Epoch/%d";
+static const char *RANDOMX_EPOCH_SEED_STRING = "Snailcoin/RandomX/Epoch/%d";
 
 // Epoch is Unix time stamp in seconds divided by epoch duration in seconds.
 uint32_t GetEpoch(uint32_t nTimestamp, uint32_t nDuration) {

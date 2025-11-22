@@ -1,5 +1,5 @@
 // Copyright (c) 2023 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -23,11 +23,11 @@ std::string ChainTypeToString(ChainType chain)
         return "signet";
     case ChainType::REGTEST:
         return "regtest";
-    case ChainType::SCASHXMAIN:
+    case ChainType::SNAILCOINMAIN:
         return "scashx";
-    case ChainType::SCASHXTESTNET:
+    case ChainType::SNAILCOINTESTNET:
         return "scashxtestnet";
-    case ChainType::SCASHXREGTEST:
+    case ChainType::SNAILCOINREGTEST:
         return "scashxregtest";
     }
     assert(false);
@@ -46,11 +46,11 @@ std::optional<ChainType> ChainTypeFromString(std::string_view chain)
     } else if (chain == "regtest") {
         return ChainType::REGTEST;
     } else if (chain == "scashx") {
-        return ChainType::SCASHXMAIN;
+        return ChainType::SNAILCOINMAIN;
     } else if (chain == "scashxtestnet") {
-        return ChainType::SCASHXTESTNET;
+        return ChainType::SNAILCOINTESTNET;
     } else if (chain == "scashxregtest") {
-        return ChainType::SCASHXREGTEST;
+        return ChainType::SNAILCOINREGTEST;
     } else {
         return std::nullopt;
     }

@@ -12,7 +12,7 @@ define(_SCASHX_CLIENT_RELEASE_NAME_MAJOR, [novaelis])
 define(_SCASHX_CLIENT_VERSION_MAJOR, 1)
 define(_SCASHX_CLIENT_VERSION_MINOR, 2)
 define(_SCASHX_CLIENT_VERSION_BUILD, 0)
-AC_INIT([ScashX],m4_join([.], _SCASHX_CLIENT_VERSION_MAJOR, _SCASHX_CLIENT_VERSION_MINOR, _SCASHX_CLIENT_VERSION_BUILD)m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC)-_SCASHX_CLIENT_RELEASE_NAME_MAJOR-core-m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_BUILD),[https://github.com/scashx/scashx/issues],[scashx],[https://github.com/scashx/scashx])
+AC_INIT([Snailcoin Core],m4_join([.], _SCASHX_CLIENT_VERSION_MAJOR, _SCASHX_CLIENT_VERSION_MINOR, _SCASHX_CLIENT_VERSION_BUILD)m4_if(_CLIENT_VERSION_RC, [0], [], [rc]_CLIENT_VERSION_RC)-_SCASHX_CLIENT_RELEASE_NAME_MAJOR-core-m4_join([.], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_BUILD),[https://github.com/snailcoinpow/snailcoin/issues],[snailcoin],[https://github.com/snailcoinpow/snailcoin])
 
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/bitcoin-config.h])

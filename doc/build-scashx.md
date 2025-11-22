@@ -1,20 +1,20 @@
-# SCASHX BUILD NOTES
+# SNAILCOIN BUILD NOTES
 
-## ScashX: Bitcoin Fork for Accessible Home Mining
+## Snailcoin: Bitcoin Fork for Accessible Home Mining
 
-**ScashX (Satoshi Cash-X)** is a cryptocurrency project forked from Bitcoin Core v28.1. Its primary innovation is the introduction of a new chain option designed to make cryptocurrency mining viable and efficient on standard home computer hardware.
+**Snailcoin (Satoshi Cash-X)** is a cryptocurrency project forked from Bitcoin Core v28.1. Its primary innovation is the introduction of a new chain option designed to make cryptocurrency mining viable and efficient on standard home computer hardware.
 
 ## Technical Foundation
 
-ScashX is built upon the robust and secure foundation of Bitcoin Core v28.1, inheriting its core features and fundamental consensus rules. The key distinction lies in ScashX's modified protocol, which facilitates a more accessible mining experience, enabling individuals to participate effectively without requiring specialized, high-power mining equipment.
+Snailcoin is built upon the robust and secure foundation of Bitcoin Core v28.1, inheriting its core features and fundamental consensus rules. The key distinction lies in Snailcoin's modified protocol, which facilitates a more accessible mining experience, enabling individuals to participate effectively without requiring specialized, high-power mining equipment.
 
-For detailed information on the specific technical modifications the new chain option, and protocol details, please refer to the [ScashX Protocol Specification](https://github.com/scashx/scashx/blob/scashx_master/doc/scashx-protocol-spec.md).
+For detailed information on the specific technical modifications the new chain option, and protocol details, please refer to the [Snailcoin Protocol Specification](https://github.com/scashx/scashx/blob/scashx_master/doc/scashx-protocol-spec.md).
 
 ## Availability and Buiilding
 
 ### Binary Releases (Recommended for most users)
 
-Pre-compiled binaries are the quickest way to set up and run ScashX. Single click install available for Windows.
+Pre-compiled binaries are the quickest way to set up and run Snailcoin. Single click install available for Windows.
 
 **Download:** https://github.com/scashx/scashx/releases
 
@@ -26,7 +26,7 @@ Pre-compiled binaries are the quickest way to set up and run ScashX. Single clic
   * **maxOS+**
 
 ### Building from Source
-If you prefer to compile ScashX yourself the build process is similar to that of Bitcoin Core (see install instructions detailed below) and takes approximately 5-15 minutes depending on your system performance. Detailed, step-by-step guidance can be also be found in [build-unix.md](https://github.com/scashx/scashx/blob/scashx_master/doc/build-unix.md) but there should be no need to refer to this for the default install on Linux (Ubuntu).
+If you prefer to compile Snailcoin yourself the build process is similar to that of Bitcoin Core (see install instructions detailed below) and takes approximately 5-15 minutes depending on your system performance. Detailed, step-by-step guidance can be also be found in [build-unix.md](https://github.com/scashx/scashx/blob/scashx_master/doc/build-unix.md) but there should be no need to refer to this for the default install on Linux (Ubuntu).
 
 * **Supported Platforms for Building:**
   * **Linux:** (Ubuntu is recommended, although other Unix-like distributions may also work).
@@ -41,7 +41,7 @@ If you prefer to compile ScashX yourself the build process is similar to that of
   * `scashx-cli`: The command-line client for the node.
 
 ## Further Information
-For the latest updates, new features, bug fixes, and detailed changes in each version, please consult the [ScashX Release Notes](release-notes/scashx/).
+For the latest updates, new features, bug fixes, and detailed changes in each version, please consult the [Snailcoin Release Notes](release-notes/scashx/).
 
 # Getting Started 
 
@@ -70,7 +70,7 @@ Exit WSL and then restart WSL ('wsl --shutdown' from Windows Command Prompt).
 
 ## Downloading the code
 
-Download the latest version of ScashX.
+Download the latest version of Snailcoin.
 
 ```bash
 git clone https://github.com/scashx/scashx.git
@@ -79,7 +79,7 @@ cd scashx
 
 ## Building for Linux
 
-ScashX requires building with the depends system.
+Snailcoin requires building with the depends system.
 
 When calling `make` use `-j N` for N parallel jobs, as many as compatible with your processor. Type 'nproc' to see the available processors on your computer.
 
@@ -124,24 +124,24 @@ make deploy
 
 ## Config file
 
-The ScashX configuration file is the same as bitcoin.conf, a default ScashX configuration file is provided below.
+The Snailcoin configuration file is the same as bitcoin.conf, a default Snailcoin configuration file is provided below.
 
 ### Unix
 
-By default, ScashX looks for a configuration file on unix here:
+By default, Snailcoin looks for a configuration file on unix here:
 `$HOME/.scashx/scashx.conf`
 
 ### Windows
 
-ScashX stores its data (your blockchain, wallet, and configuration files) in a hidden folder within your user profile. This is standard practice for applications.
+Snailcoin stores its data (your blockchain, wallet, and configuration files) in a hidden folder within your user profile. This is standard practice for applications.
 
 You can quickly access this folder which will also contain your wallets and blockchain data by following these steps:
 
 * Open File Explorer (you can press Win + E).
 
-* Type `%APPDATA%\ScashX` into the address bar at the top of the File Explorer window. Press Enter.
+* Type `%APPDATA%\Snailcoin` into the address bar at the top of the File Explorer window. Press Enter.
 
-This will directly open the ScashX data folder where the scashx.conf should be placed, typically: `\C:\Users\YourUsername\AppData\Roaming\ScashX`
+This will directly open the Snailcoin data folder where the scashx.conf should be placed, typically: `\C:\Users\YourUsername\AppData\Roaming\Snailcoin`
 
 (where YourUsername will be your specific Windows user profile name).
 
@@ -154,7 +154,7 @@ After running the GUI you can check that the correct config setting is loading i
 The following is a sample `scashx.conf`:
 
 ```
-# This is the main ScashX configuration file.
+# This is the main Snailcoin configuration file.
 # Lines starting with '#' are comments.
 
 # --- GLOBAL SETTINGS ---
@@ -173,7 +173,7 @@ randomxfastmode=1             # Enable fast mode for RandomX (relevant for minin
 fallbackfee=0.01              # Set a fallback fee rate (in coins per kB) for transactions
 
 # --- MAINNET CONFIGURATION ---
-# This section defines settings specific to the ScashX mainnet.
+# This section defines settings specific to the Snailcoin mainnet.
 [scashx]
 # DNS seeds help your node find initial peers on the network.
 dnsseed=1
@@ -181,12 +181,12 @@ adddnsseed=seed.scashx.io
 adddnsseed=seed2.scashx.io
 
 # --- TESTNET CONFIGURATION ---
-# This section defines settings specific to the ScashX testnet.
+# This section defines settings specific to the Snailcoin testnet.
 [scashxtestnet]
 addnode=45.76.143.162
 
 # --- REGTEST CONFIGURATION ---
-# This section defines settings specific to the ScashX regtest (regression test) network.
+# This section defines settings specific to the Snailcoin regtest (regression test) network.
 [scashxregtest]
 addnode=45.76.143.162
 ```
@@ -208,16 +208,16 @@ If you intend to use the same configuration file with multiple networks, the con
 
 ## Running a node
 
-Note: The first time you run the node it may take several minutes to synchronise with the ScashX network (check the GUI status in Windows). Synchronisation must complete before commencing mining.
+Note: The first time you run the node it may take several minutes to synchronise with the Snailcoin network (check the GUI status in Windows). Synchronisation must complete before commencing mining.
 
 ### Unix
 
-To run the ScashX node:
+To run the Snailcoin node:
 ```bash
 scashxd
 ```
 
-To send commands to the ScashX node:
+To send commands to the Snailcoin node:
 ```
 scashx-cli [COMMAND] [PARAMETERS]
 ```
@@ -245,30 +245,30 @@ memory=16GB
 
 When running executables with the name `bitcoin...` if no chain is configured, the default chain will be Bitcoin mainnet.
 
-When running executables with the name `scashx...` if no chain is configured, the default chain will be ScashX mainnet.
+When running executables with the name `scashx...` if no chain is configured, the default chain will be Snailcoin mainnet.
 
 Option `-chain=` accepts the following values: `scashx` `scashxtestnet` `scashxregtest` and for Bitcoin networks: `main` `test` `signet` `regtest`
 
-## Mining ScashX
+## Mining Snailcoin
 
-There are a few ways to mine ScashX.
+There are a few ways to mine Snailcoin.
 
 ### Main network and Testnet chain
 
-Mining takes place inside [cpuminer-scashx](https://github.com/scashx/cpuminer-scashx) which is dedicated mining software that connects to the ScashX node and retrieves mining jobs via RPC `getblocktemplate`. The 'randomxfastmode' configuration option is not required for the ScashX node, since mining occurs inside `cpuminer-scashx` which always runs in fast mode.
+Mining takes place inside [cpuminer-scashx](https://github.com/scashx/cpuminer-scashx) which is dedicated mining software that connects to the Snailcoin node and retrieves mining jobs via RPC `getblocktemplate`. The 'randomxfastmode' configuration option is not required for the Snailcoin node, since mining occurs inside `cpuminer-scashx` which always runs in fast mode.
 
 Build instructions for [cpuminer-scashx](https://github.com/scashx/cpuminer-scashx/blob/master/README.md).
 
 ### Testnet and Regtest chain
 
-Mining takes place inside the ScashX node, using the RPC `generatetoaddress` which is single-threaded. For example:
+Mining takes place inside the Snailcoin node, using the RPC `generatetoaddress` which is single-threaded. For example:
 ```bash
 scashx-cli createwallet myfirstwallet
 scashx-cli getnewaddress
 scashx-cli generatetoaddress 1 newminingaddress 10000
 ```
 
-To speed up mining in the ScashX node, at the expense of using more memory (at least 2GB more), enable the option `randomxfastmode` by adding to the `scashx.conf` configuration file:
+To speed up mining in the Snailcoin node, at the expense of using more memory (at least 2GB more), enable the option `randomxfastmode` by adding to the `scashx.conf` configuration file:
 
 ```
 randomxfastmode=1
@@ -281,4 +281,4 @@ Third-party software exists for mining at pools.
 Getting Help
 ---------------------
 
-Please file a Github issue if build problems are not resolved after reviewing the available ScashX and Bitcoin documentation.
+Please file a Github issue if build problems are not resolved after reviewing the available Snailcoin and Bitcoin documentation.

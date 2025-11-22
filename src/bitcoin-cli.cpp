@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2022 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -441,11 +441,11 @@ private:
             return " btcregtest";
         case ChainType::MAIN:
             return " btc";
-        case ChainType::SCASHXTESTNET:
+        case ChainType::SNAILCOINTESTNET:
             return " scashxtestnet";
-        case ChainType::SCASHXREGTEST:
+        case ChainType::SNAILCOINREGTEST:
             return " scashxregtest";
-        case ChainType::SCASHXMAIN:
+        case ChainType::SNAILCOINMAIN:
             return " scashx";
         }
         assert(false);

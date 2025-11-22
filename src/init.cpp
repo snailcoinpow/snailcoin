@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2022 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -463,12 +463,12 @@ void SetupServerArgs(ArgsManager& argsman)
     const auto signetChainParams = CreateChainParams(argsman, ChainType::SIGNET);
     const auto regtestChainParams = CreateChainParams(argsman, ChainType::REGTEST);
 
-    const auto scashXRegtestBaseParams = CreateBaseChainParams(ChainType::SCASHXREGTEST);
-    const auto scashXTestnetBaseParams = CreateBaseChainParams(ChainType::SCASHXTESTNET);
-    const auto scashXMainBaseParams = CreateBaseChainParams(ChainType::SCASHXMAIN);
-    const auto scashXRegtestChainParams = CreateChainParams(argsman, ChainType::SCASHXREGTEST);
-    const auto scashXTestnetChainParams = CreateChainParams(argsman, ChainType::SCASHXTESTNET);
-    const auto scashXMainChainParams = CreateChainParams(argsman, ChainType::SCASHXMAIN);
+    const auto scashXRegtestBaseParams = CreateBaseChainParams(ChainType::SNAILCOINREGTEST);
+    const auto scashXTestnetBaseParams = CreateBaseChainParams(ChainType::SNAILCOINTESTNET);
+    const auto scashXMainBaseParams = CreateBaseChainParams(ChainType::SNAILCOINMAIN);
+    const auto scashXRegtestChainParams = CreateChainParams(argsman, ChainType::SNAILCOINREGTEST);
+    const auto scashXTestnetChainParams = CreateChainParams(argsman, ChainType::SNAILCOINTESTNET);
+    const auto scashXMainChainParams = CreateChainParams(argsman, ChainType::SNAILCOINMAIN);
 
     // Hidden Options
     std::vector<std::string> hidden_args = {
@@ -1095,7 +1095,7 @@ bool AppInitParameterInteraction(const ArgsManager& args)
         }
     }
 
-    if (chain == ChainType::SCASHXMAIN || chain == ChainType::SCASHXREGTEST || chain == ChainType::SCASHXTESTNET) {
+    if (chain == ChainType::SNAILCOINMAIN || chain == ChainType::SNAILCOINREGTEST || chain == ChainType::SNAILCOINTESTNET) {
         if (args.GetBoolArg("-datacarrier", DEFAULT_ACCEPT_DATACARRIER)) {
             return InitError(Untranslated("Data carrier is not supported."));
         }
@@ -1170,7 +1170,7 @@ bool AppInitMain(NodeContext& node, interfaces::BlockAndHeaderTipInfo* tip_info)
 
     if (chainparams.GetConsensus().fPowRandomX) {
         g_isRandomX = true;
-        LogPrintf("%s: ScashX RandomX proof-of-work active\n", __func__);
+        LogPrintf("%s: Snailcoin RandomX proof-of-work active\n", __func__);
         randomx_flags flags = randomx_get_flags();
         if (flags & RANDOMX_FLAG_ARGON2_AVX2) {
             LogPrintf("- Argon2 implementation: AVX2\n");

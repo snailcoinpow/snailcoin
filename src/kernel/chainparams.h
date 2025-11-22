@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -165,9 +165,9 @@ public:
     static std::unique_ptr<const CChainParams> TestNet();
     static std::unique_ptr<const CChainParams> TestNet4();
 
-    static std::unique_ptr<const CChainParams> ScashXRegTest(const RegTestOptions& options);
-    static std::unique_ptr<const CChainParams> ScashXTestNet();
-    static std::unique_ptr<const CChainParams> ScashXMain();
+    static std::unique_ptr<const CChainParams> SnailcoinRegTest(const RegTestOptions& options);
+    static std::unique_ptr<const CChainParams> SnailcoinTestNet();
+    static std::unique_ptr<const CChainParams> SnailcoinMain();
 
 protected:
     CChainParams() = default;

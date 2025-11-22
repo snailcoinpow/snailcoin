@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -160,7 +160,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        bech32_hrp = "bc";
+        bech32_hrp = "sc";
 
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_main), std::end(chainparams_seed_main));
 
@@ -273,7 +273,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "tb";
+        bech32_hrp = "tsc";
 
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_test), std::end(chainparams_seed_test));
 
@@ -377,7 +377,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "tb";
+        bech32_hrp = "tsc";
 
         vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_testnet4), std::end(chainparams_seed_testnet4));
 
@@ -511,7 +511,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "tb";
+        bech32_hrp = "tsc";
 
         fDefaultConsistencyChecks = false;
         m_is_mockable_chain = false;
@@ -648,7 +648,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        bech32_hrp = "bcrt";
+        bech32_hrp = "rsc";
     }
 };
 
@@ -678,14 +678,14 @@ std::unique_ptr<const CChainParams> CChainParams::TestNet4()
 }
 
 // Compute block hash over entire header (including RandomX fields) even if global flag is not set
-static uint256 GetHashOfScashXGenesisBlock(const CBlock& genesis) {
+static uint256 GetHashOfSnailcoinGenesisBlock(const CBlock& genesis) {
     CBlockHeader rx_blockHeader(genesis);
     unsigned char hash[32];
     CHash256().Write({(unsigned char *)&rx_blockHeader, sizeof(rx_blockHeader)}).Finalize(hash);
     return uint256(hash);
 }
 
-static CBlock CreateScashXGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
+static CBlock CreateSnailcoinGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "The Wall Street Journal 03/Jan/2025 Stocks charged higher Friday.";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
@@ -695,10 +695,10 @@ static CBlock CreateScashXGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t
 /**
  * Main network on which people trade goods and services.
  */
-class CScashXMainParams : public CChainParams {
+class CSnailcoinMainParams : public CChainParams {
 public:
-    CScashXMainParams() {
-        m_chain_type = ChainType::SCASHXMAIN;
+    CSnailcoinMainParams() {
+        m_chain_type = ChainType::SNAILCOINMAIN;
         consensus.signet_blocks = false;
         consensus.signet_challenge.clear();
         consensus.nSubsidyHalvingInterval = 210000;
@@ -760,9 +760,9 @@ public:
         consensus.fPowRandomX = true;
         consensus.nRandomXEpochDuration = 7 * 24 * 60 * 60;     // one week
         
-        genesis = CreateScashXGenesisBlock(1735953000, 5, 0x20200000, 1, 50 * COIN);
+        genesis = CreateSnailcoinGenesisBlock(1735953000, 5, 0x20200000, 1, 50 * COIN);
         genesis.hashRandomX = uint256S("a16bf6524094b0f0c6312d704037be95616912b13f6c9565f451831308e29484");
-        consensus.hashGenesisBlock = GetHashOfScashXGenesisBlock(genesis);
+        consensus.hashGenesisBlock = GetHashOfSnailcoinGenesisBlock(genesis);
         assert(consensus.hashGenesisBlock == uint256S("67458476a9cad68c0da181c9761a4d40b46d76ef384c90f193e4a7423328134c"));
         assert(genesis.hashMerkleRoot == uint256S("f21289053bfcaaf7adc4ee85e9a91b41f08fd6c9e8015aca3dd9de2c2df2af66"));
 
@@ -782,7 +782,7 @@ public:
 
         checkpointData = {
             {
-                // SCASHXMAIN checkpoints
+                // SNAILCOINMAIN checkpoints
                 {0,     uint256S("67458476a9cad68c0da181c9761a4d40b46d76ef384c90f193e4a7423328134c")},
                 {5000,  uint256S("40fb61d94cc38e77ce11b7c6af3454c74007e373cc6efec55c50598ad8e2ab94")},
                 {10000, uint256S("8e01c1fc50752a31d8d624cb74e3b67486f67b4d95dc9c580cca5fab0ca6038e")},
@@ -807,10 +807,10 @@ public:
 /**
  * Testnet: public test network which is reset from time to time.
  */
-class CScashXTestNetParams : public CChainParams {
+class CSnailcoinTestNetParams : public CChainParams {
 public:
-    CScashXTestNetParams() {
-        m_chain_type = ChainType::SCASHXTESTNET;
+    CSnailcoinTestNetParams() {
+        m_chain_type = ChainType::SNAILCOINTESTNET;
         consensus.signet_blocks = false;
         consensus.signet_challenge.clear();
         consensus.nSubsidyHalvingInterval = 210000;
@@ -867,7 +867,7 @@ public:
         consensus.nRandomXEpochDuration = 7 * 24 * 60 * 60;     // one week
         genesis = CreateGenesisBlock(1296688602, 152529, 0x1e7fffff, 1, 50 * COIN);
         genesis.hashRandomX = uint256S("0c29c9752687de2033274ecfc160aa2e1f889e93da401369bb4d11b248b2c8f8");
-        consensus.hashGenesisBlock = GetHashOfScashXGenesisBlock(genesis);
+        consensus.hashGenesisBlock = GetHashOfSnailcoinGenesisBlock(genesis);
         assert(consensus.hashGenesisBlock == uint256S("fb8eca2fcdb6ba63d9b2ad670d66bc83d9eefe118eeaeeb6d1ef75305f4ed3a8"));
         assert(genesis.hashMerkleRoot == uint256S("4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
@@ -903,12 +903,12 @@ public:
  * Regression test: intended for private networks only. Has minimal difficulty to ensure that
  * blocks can be found instantly.
  */
-class CScashXRegTestParams : public CChainParams
+class CSnailcoinRegTestParams : public CChainParams
 {
 public:
-    explicit CScashXRegTestParams(const RegTestOptions& opts)
+    explicit CSnailcoinRegTestParams(const RegTestOptions& opts)
     {
-        m_chain_type = ChainType::SCASHXREGTEST;
+        m_chain_type = ChainType::SNAILCOINREGTEST;
         consensus.signet_blocks = false;
         consensus.signet_challenge.clear();
         consensus.nSubsidyHalvingInterval = 150;
@@ -979,7 +979,7 @@ public:
         consensus.nRandomXEpochDuration = 24 * 60 * 60;     // one day
         genesis = CreateGenesisBlock(1296688602, 3, 0x207fffff, 1, 50 * COIN);
         genesis.hashRandomX = uint256S("0x24716a005adeb6df19c9eba3e600c45dc5f698d908b42c564f72441f5083a53f");
-        consensus.hashGenesisBlock = GetHashOfScashXGenesisBlock(genesis);
+        consensus.hashGenesisBlock = GetHashOfSnailcoinGenesisBlock(genesis);
         assert(consensus.hashGenesisBlock == uint256S("111edf4a62e4a576a4c5759abe22e49f6327f87743cd833398830423549509a7"));
         assert(genesis.hashMerkleRoot == uint256S("4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
@@ -1012,19 +1012,19 @@ public:
     }
 };
 
-std::unique_ptr<const CChainParams> CChainParams::ScashXRegTest(const RegTestOptions& options)
+std::unique_ptr<const CChainParams> CChainParams::SnailcoinRegTest(const RegTestOptions& options)
 {
-    return std::make_unique<const CScashXRegTestParams>(options);
+    return std::make_unique<const CSnailcoinRegTestParams>(options);
 }
 
-std::unique_ptr<const CChainParams> CChainParams::ScashXTestNet()
+std::unique_ptr<const CChainParams> CChainParams::SnailcoinTestNet()
 {
-    return std::make_unique<const CScashXTestNetParams>();
+    return std::make_unique<const CSnailcoinTestNetParams>();
 }
 
-std::unique_ptr<const CChainParams> CChainParams::ScashXMain()
+std::unique_ptr<const CChainParams> CChainParams::SnailcoinMain()
 {
-    return std::make_unique<const CScashXMainParams>();
+    return std::make_unique<const CSnailcoinMainParams>();
 }
 
 std::vector<int> CChainParams::GetAvailableSnapshotHeights() const
@@ -1045,9 +1045,9 @@ std::optional<ChainType> GetNetworkForMagic(const MessageStartChars& message)
     const auto testnet4_msg = CChainParams::TestNet4()->MessageStart();
     const auto regtest_msg = CChainParams::RegTest({})->MessageStart();
     const auto signet_msg = CChainParams::SigNet({})->MessageStart();
-    const auto scashx_main_msg = CChainParams::ScashXMain()->MessageStart();
-    const auto scashx_test_msg = CChainParams::ScashXTestNet()->MessageStart();
-    const auto scashx_regtest_msg = CChainParams::ScashXRegTest({})->MessageStart();
+    const auto scashx_main_msg = CChainParams::SnailcoinMain()->MessageStart();
+    const auto scashx_test_msg = CChainParams::SnailcoinTestNet()->MessageStart();
+    const auto scashx_regtest_msg = CChainParams::SnailcoinRegTest({})->MessageStart();
 
     if (std::equal(message.begin(), message.end(), mainnet_msg.data())) {
         return ChainType::MAIN;
@@ -1060,11 +1060,11 @@ std::optional<ChainType> GetNetworkForMagic(const MessageStartChars& message)
     } else if (std::equal(message.begin(), message.end(), signet_msg.data())) {
         return ChainType::SIGNET;
     } else if (std::equal(message.begin(), message.end(), scashx_main_msg.data())) {
-        return ChainType::SCASHXMAIN;
+        return ChainType::SNAILCOINMAIN;
     } else if (std::equal(message.begin(), message.end(), scashx_test_msg.data())) {
-        return ChainType::SCASHXTESTNET;
+        return ChainType::SNAILCOINTESTNET;
     } else if (std::equal(message.begin(), message.end(), scashx_regtest_msg.data())) {
-        return ChainType::SCASHXREGTEST;
+        return ChainType::SNAILCOINREGTEST;
     }
     return std::nullopt;
 }

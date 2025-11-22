@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2021 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -46,21 +46,21 @@ std::unique_ptr<CBaseChainParams> CreateBaseChainParams(const ChainType chain)
 {
     switch (chain) {
     case ChainType::MAIN:
-        return std::make_unique<CBaseChainParams>("btc", 8332);
+        return std::make_unique<CBaseChainParams>("snail", 8332);
     case ChainType::TESTNET:
-        return std::make_unique<CBaseChainParams>("btctestnet3", 18332);
+        return std::make_unique<CBaseChainParams>("snailtestnet3", 18332);
     case ChainType::TESTNET4:
-        return std::make_unique<CBaseChainParams>("btctestnet4", 48332);
+        return std::make_unique<CBaseChainParams>("snailtestnet4", 48332);
     case ChainType::SIGNET:
-        return std::make_unique<CBaseChainParams>("btcsignet", 38332);
+        return std::make_unique<CBaseChainParams>("snailsignet", 38332);
     case ChainType::REGTEST:
-        return std::make_unique<CBaseChainParams>("btcregtest", 18443);
-    case ChainType::SCASHXMAIN:
-        return std::make_unique<CBaseChainParams>("scashx", 8352);
-    case ChainType::SCASHXTESTNET:
-        return std::make_unique<CBaseChainParams>("scashxtestnet", 18352);
-    case ChainType::SCASHXREGTEST:
-        return std::make_unique<CBaseChainParams>("scashxregtest", 18463);
+        return std::make_unique<CBaseChainParams>("snailregtest", 18443);
+    case ChainType::SNAILCOINMAIN:
+        return std::make_unique<CBaseChainParams>("snailcoinmain", 8352);
+    case ChainType::SNAILCOINTESTNET:
+        return std::make_unique<CBaseChainParams>("snailcointestnet", 18352);
+    case ChainType::SNAILCOINREGTEST:
+        return std::make_unique<CBaseChainParams>("snailcoinregtest", 18463);
     }
     assert(false);
 }

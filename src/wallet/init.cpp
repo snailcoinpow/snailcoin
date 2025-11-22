@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2022 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -122,7 +122,7 @@ bool WalletInit::ParameterInteraction() const
     }
 
     ChainType chain = gArgs.GetChainType();
-    if (chain == ChainType::SCASHXMAIN || chain == ChainType::SCASHXREGTEST || chain == ChainType::SCASHXTESTNET) {
+    if (chain == ChainType::SNAILCOINMAIN || chain == ChainType::SNAILCOINREGTEST || chain == ChainType::SNAILCOINTESTNET) {
         if (gArgs.GetBoolArg("-walletrbf", DEFAULT_WALLET_RBF)) {
             return InitError(Untranslated("RBF is not supported."));
         }

@@ -1,11 +1,11 @@
 1.1.0 Release Notes
 ===================
 
-ScashX can be built from source and pre-compiled binaries are available.
+Snailcoin can be built from source and pre-compiled binaries are available.
 
-ScashX versioning is as follows:
+Snailcoin versioning is as follows:
 ```
-ScashX version v1.x.x-novaelis-core-27.0.0 
+Snailcoin version v1.x.x-novaelis-core-27.0.0 
               |          |            |
             SCASH     CODENAME    BITCOIN CORE
 ```
@@ -17,7 +17,7 @@ Please report bugs using the issue tracker at GitHub:
 How to Upgrade
 ==============
 
-If you are running an older version of ScashX on Unix, shut it down:
+If you are running an older version of Snailcoin on Unix, shut it down:
 ```
 ./scashx-cli stop
 ```
@@ -32,15 +32,15 @@ If running on Windows: File-->Exit.
 Compatibility
 ==============
 
-ScashX is built as a new chain type on top of the Bitcoin Core software. ScashX
-can connect to the Bitcoin network and operate as a Bitcoin client fully compatible with the current network consensus rules. However, it is not recommended to use ScashX
+Snailcoin is built as a new chain type on top of the Bitcoin Core software. Snailcoin
+can connect to the Bitcoin network and operate as a Bitcoin client fully compatible with the current network consensus rules. However, it is not recommended to use Snailcoin
 as a Bitcoin client, and instead Bitcoin Core should be used.
 
-ScashX is supported and tested on operating systems using the Linux kernel and on Windows 10+.
-ScashX should also work on most other Unix-like systems but is not as frequently tested
-on them.  It is not recommended to use ScashX on unsupported systems.
+Snailcoin is supported and tested on operating systems using the Linux kernel and on Windows 10+.
+Snailcoin should also work on most other Unix-like systems but is not as frequently tested
+on them.  It is not recommended to use Snailcoin on unsupported systems.
 
-ScashX is based on Bitcoin Core 27.0. See a list of changes in the [Bitcoin Release Notes](https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-27.0.md).
+Snailcoin is based on Bitcoin Core 27.0. See a list of changes in the [Bitcoin Release Notes](https://github.com/bitcoin/bitcoin/blob/master/doc/release-notes/release-notes-27.0.md).
 
 Notable changes
 ===============
@@ -54,7 +54,7 @@ Previous Releases:
 ------------------
 Proof of work
 -------------
-- The SHA256 proof of work has been replaced with RandomX.  See the the [Scash Protocol spec](https://github.com/scashx/scashx/blob/scashx_master/doc/scashx-protocol-spec.md).
+- The SHA256 proof of work has been replaced with RandomX.  See the the [Snailcoin Protocol spec](https://github.com/scashx/scashx/blob/scashx_master/doc/scashx-protocol-spec.md).
 
 ASERT Difficulty Adjustment Algorithm
 -------------------------------------
@@ -62,15 +62,15 @@ ASERT Difficulty Adjustment Algorithm
 
 Replace-by-fee
 -------------- 
-- Disabled when running the ScashX network
+- Disabled when running the Snailcoin network
 
 Datacarrier
 ------------
-- Disabled when running the ScashX network
+- Disabled when running the Snailcoin network
 
 Ordinals
 --------
-- Transactions containing ordinals inscriptions are treated as non-standard when running the ScashX network.
+- Transactions containing ordinals inscriptions are treated as non-standard when running the Snailcoin network.
 
 New options
 -----------
@@ -82,7 +82,7 @@ New options
 - New chain options `-scashx`, `-scashxtestnet`, `-scashxregtest`
 
 - New proof of work related options `-randomxfastmode` and `-randomxvmcachesize`.
-  See the [ScashX Protocol spec](https://github.com/scashx/scashx/blob/scashx_master/doc/scashx-protocol-spec.m).
+  See the [Snailcoin Protocol spec](https://github.com/scashx/scashx/blob/scashx_master/doc/scashx-protocol-spec.m).
 
 Updated RPCs
 ------------

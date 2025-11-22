@@ -1,5 +1,5 @@
 // Copyright (c) 2012-2022 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -22,7 +22,7 @@ using util::Join;
  * for both bitcoind and bitcoin-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("ScashX");
+const std::string CLIENT_NAME("Snailcoin");
 
 #ifdef HAVE_BUILD_INFO
 #include <obj/build.h>
@@ -82,19 +82,19 @@ std::string CopyrightHolders(const std::string& strPrefix)
         strCopyrightHolders += "\n" + strPrefix + "The Bitcoin Core developers";
     }
 
-    if (copyright_devs.find("Scash") == std::string::npos) {
-        strCopyrightHolders += "\nCopyright (C) 2024 The Scash developers";
+    if (copyright_devs.find("Scashx") == std::string::npos) {
+        strCopyrightHolders += "\nCopyright (C) 2024 The Satoshi Cash-X developers";
     }
 
-    if (copyright_devs.find("ScashX") == std::string::npos) {
-        strCopyrightHolders += "\nCopyright (C) 2025 The Satoshi Cash-X developers";
+    if (copyright_devs.find("Snailcoin") == std::string::npos) {
+        strCopyrightHolders += "\nCopyright (C) 2025 The Snailcoin developers";
     }
     return strCopyrightHolders;
 }
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/scashx/scashx>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/snailcoinpow/snailcoin>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i").translated, 2009, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

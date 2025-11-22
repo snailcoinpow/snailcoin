@@ -1,5 +1,5 @@
 // Copyright (c) 2015-2022 The Bitcoin Core developers
-// Copyright (c) 2024 The Scash developers
+// Copyright (c) 2024 The Snailcoin developers
 // Copyright (c) 2025 The Satoshi Cash-X developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -220,24 +220,24 @@ BOOST_AUTO_TEST_CASE(ChainParams_SIGNET_sanity)
     sanity_check_chainparams(*m_node.args, ChainType::SIGNET);
 }
 
-BOOST_AUTO_TEST_CASE(ChainParams_SCASHXREGTEST_sanity)
+BOOST_AUTO_TEST_CASE(ChainParams_SNAILCOINREGTEST_sanity)
 {
     g_isRandomX = true;
-    sanity_check_chainparams(*m_node.args, ChainType::SCASHXREGTEST);
+    sanity_check_chainparams(*m_node.args, ChainType::SNAILCOINREGTEST);
     g_isRandomX = false;
 }
 
-BOOST_AUTO_TEST_CASE(ChainParams_SCASHXTESTNET_sanity)
+BOOST_AUTO_TEST_CASE(ChainParams_SNAILCOINTESTNET_sanity)
 {
     g_isRandomX = true;
-    sanity_check_chainparams(*m_node.args, ChainType::SCASHXTESTNET);
+    sanity_check_chainparams(*m_node.args, ChainType::SNAILCOINTESTNET);
     g_isRandomX = false;
 }
 
-BOOST_AUTO_TEST_CASE(ChainParams_SCASHXMAIN_sanity)
+BOOST_AUTO_TEST_CASE(ChainParams_SNAILCOINMAIN_sanity)
 {
     g_isRandomX = true;
-    sanity_check_chainparams(*m_node.args, ChainType::SCASHXMAIN);
+    sanity_check_chainparams(*m_node.args, ChainType::SNAILCOINMAIN);
     g_isRandomX = false;
 }
 
@@ -257,10 +257,10 @@ BOOST_AUTO_TEST_CASE(Check_Epoch_Calculation)
 BOOST_AUTO_TEST_CASE(Check_RandomX_Key_Generation)
 {
     // RandomX key is sha256d of seed string where the epoch number changes
-    // "ScashX/RandomX/Epoch/1"
+    // "Snailcoin/RandomX/Epoch/1"
     uint256 hash = GetSeedHash(1);
     BOOST_CHECK_EQUAL(hash, uint256S("00dbf089477a1cd4ac7d64a81595ab22fe1e0e045954d0635f4b954bc3b3df00"));
-    // "ScashX/RandomX/Epoch/999"
+    // "Snailcoin/RandomX/Epoch/999"
     hash = GetSeedHash(999);
     BOOST_CHECK_EQUAL(hash, uint256S("82107e0e65b970e0287a89f1afa78cc95a78bd755813ee481214152e295d634c"));
 }
@@ -269,10 +269,10 @@ BOOST_AUTO_TEST_CASE(Check_RandomX_BlockHeader)
 {
     m_node.args->ForceSetArg("-randomxfastmode", "0"); // disable fast mode which requires at least 2GB of memory
     
-    const auto chainParams = CreateChainParams(*m_node.args, ChainType::SCASHXTESTNET);
+    const auto chainParams = CreateChainParams(*m_node.args, ChainType::SNAILCOINTESTNET);
     const auto consensus = chainParams->GetConsensus();
 
-    // Sanity check: block header GetHash() function includes RandomX field when running as ScashX
+    // Sanity check: block header GetHash() function includes RandomX field when running as Snailcoin
     assert(!g_isRandomX);
     BOOST_CHECK_NE(consensus.hashGenesisBlock, chainParams->GenesisBlock().GetHash());
     g_isRandomX = true;
@@ -373,7 +373,7 @@ BOOST_AUTO_TEST_CASE(Check_RandomX_BlockHeader)
  * Source code:
  * https://gitlab.com/bitcoin-cash-node/bitcoin-cash-node/-/blob/0a5fa6246387c3a9498898ee5257ee6950c1b635/src/test/pow_tests.cpp
  *
- * Any changes to the Bitcoin Cash code because ScashX has a different powlimit are marked with ScashX guards.
+ * Any changes to the Bitcoin Cash code because Snailcoin has a different powlimit are marked with Snailcoin guards.
  */
 
 using CBlockIndexPtr = std::unique_ptr<CBlockIndex>;
@@ -415,7 +415,7 @@ double GetASERTApproximationError(const CBlockIndex *pindexPrev,
 
 BOOST_AUTO_TEST_CASE(asert_difficulty_test) {
     // Use BCH powLimit to replicate BCH tests
-    Consensus::Params mutableParams = CreateChainParams(*m_node.args, ChainType::SCASHXMAIN)->GetConsensus();
+    Consensus::Params mutableParams = CreateChainParams(*m_node.args, ChainType::SNAILCOINMAIN)->GetConsensus();
     mutableParams.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
     std::vector<CBlockIndexPtr> blocks(3000 + 2*24*3600);
     mutableParams.asertAnchorParams.reset();  // clear hard-coded anchor block so that we may perform these below tests
@@ -656,7 +656,7 @@ std::string StrPrintCalcArgs(const arith_uint256 refTarget,
 // Tests of the CalculateASERT function.
 BOOST_AUTO_TEST_CASE(calculate_asert_test) {
     // Use BCH powLimit to replicate BCH tests
-    Consensus::Params params = CreateChainParams(*m_node.args, ChainType::SCASHXMAIN)->GetConsensus();
+    Consensus::Params params = CreateChainParams(*m_node.args, ChainType::SNAILCOINMAIN)->GetConsensus();
     params.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
     const int64_t nHalfLife = params.nASERTHalfLife;
 
@@ -784,11 +784,11 @@ BOOST_AUTO_TEST_CASE(calculate_asert_test) {
  * Test transition of legacy Bitcoin DAA to ASERT algorithm with anchor block.
  */
 BOOST_AUTO_TEST_CASE(asert_activation_anchor_scashx_test) {
-    Consensus::Params params = CreateChainParams(*m_node.args, ChainType::SCASHXMAIN)->GetConsensus();
+    Consensus::Params params = CreateChainParams(*m_node.args, ChainType::SNAILCOINMAIN)->GetConsensus();
     params.asertAnchorParams.reset(); // clear hard-coded anchor block so that we may test the activation below
     CBlockHeader blkHeaderDummy;
 
-    // an arbitrary compact target for our chain (based on ScashX chain ~ Apr 26 2024).
+    // an arbitrary compact target for our chain (based on Snailcoin chain ~ Apr 26 2024).
     uint32_t initialBits = 0x1c7b9d90;
 
     // Block store for anonymous blocks; needs to be big enough to fit all generated blocks in this test.

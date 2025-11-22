@@ -14,8 +14,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "ScashX"
-            VALUE "FileDescription",    "scashxd (ScashX node with a JSON-RPC server)"
+            VALUE "CompanyName",        "Snailcoin"
+            VALUE "FileDescription",    "scashxd (Snailcoin node with a JSON-RPC server)"
             VALUE "FileVersion",        PACKAGE_VERSION
             VALUE "InternalName",       "scashxd"
             VALUE "LegalCopyright",     COPYRIGHT_STR

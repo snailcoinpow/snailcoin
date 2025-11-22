@@ -1,15 +1,15 @@
-# ScashX Protocol
+# Snailcoin Protocol
 
 #### Authors
 
-Original Authors: Simon Liu (Scash project)
+Original Authors: Simon Liu (Snailcoin project)
 
 Original Created: 2024-02-16
 
 Original License: BSD-2-Clause
 
 
-Authors: The Satoshi Cash-X developers (Forked from Scash)
+Authors: The Satoshi Cash-X developers (Forked from Snailcoin)
 
 Modifications Started: 2025-01-05
 
@@ -45,13 +45,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## Abstract
 
-ScashX (Satoshi Cash-X) is an experimental digital currency based on the Bitcoin protocol.
+Snailcoin (Satoshi Cash-X) is an experimental digital currency based on the Bitcoin protocol.
 
-ScashX is designed for mining on home computers.
+Snailcoin is designed for mining on home computers.
 
-ScashX has been implemented as a new chain option on top of v27 of the Bitcoin Core open source software.
+Snailcoin has been implemented as a new chain option on top of v27 of the Bitcoin Core open source software.
 
-This document details the changes required to add support for ScashX to Bitcoin related software.
+This document details the changes required to add support for Snailcoin to Bitcoin related software.
 
 
 #### Table of contents
@@ -70,38 +70,38 @@ This document details the changes required to add support for ScashX to Bitcoin 
 
 ### 1.1 RandomX
 
-ScashX replaces Bitcoin's SHA256 proof of work algorithm with [RandomX](https://github.com/tevador/RandomX), a proof of work algorithm designed to close the gap between general-purpose CPUs and specialized hardware. ScashX uses v1.2.1 of RandomX.
+Snailcoin replaces Bitcoin's SHA256 proof of work algorithm with [RandomX](https://github.com/tevador/RandomX), a proof of work algorithm designed to close the gap between general-purpose CPUs and specialized hardware. Snailcoin uses v1.2.1 of RandomX.
 
 ### 1.2 Parameters
 
-ScashX customizes the standard configuration parameters for RandomX, with the following change:
+Snailcoin customizes the standard configuration parameters for RandomX, with the following change:
 
 |Parameter|Description|Value|
 |---------|-----|-------|
-|`RANDOMX_ARGON_SALT`|Argon2 salt|`"RandomX-ScashX\x01"`|
+|`RANDOMX_ARGON_SALT`|Argon2 salt|`"RandomX-Snailcoin\x01"`|
 
 ### 1.3 Epoch
 
 The key `K` input to the RandomX algorithm changes over time.
 
-ScashX divides time into epochs.
+Snailcoin divides time into epochs.
 
 The epoch `E` is calculated as `unix_timestamp / epoch_duration` using integer math.
 
-ScashX defines the epoch duration as follows:
+Snailcoin defines the epoch duration as follows:
 
 |Chain|Seconds|
 |---|---|
-|ScashX| `7 * 24 * 60 * 60`|
-|ScashX Testnet| `7 * 24 * 60 * 60`|
-|ScashX Regtest| `1 * 24 * 60 * 60`|
+|Snailcoin| `7 * 24 * 60 * 60`|
+|Snailcoin Testnet| `7 * 24 * 60 * 60`|
+|Snailcoin Regtest| `1 * 24 * 60 * 60`|
 
 ### 1.4 Key Derivation
 
 To derive key `K` to be used as input to the RandomX algorithm, perform the following steps:
 
 1. Compute epoch `E` as an integer value.
-2. Generate a seed string `S` by substituting epoch `E` into string `"ScashX/RandomX/Epoch/%d"` (`E` replaces `%d`).
+2. Generate a seed string `S` by substituting epoch `E` into string `"Snailcoin/RandomX/Epoch/%d"` (`E` replaces `%d`).
 3. Key `K` is the digest of `SHA256(SHA256(S))`.
 
 Note: Using an epoch-based predefined sequence of keys instead of deriving keys from historical blockchain data enables light clients to fully validate the proof of work in a block header without requiring any contextual data from the blockchain.
@@ -111,7 +111,7 @@ Note: Using an epoch-based predefined sequence of keys instead of deriving keys 
 
 ### 2.1 Block header
 
-The ScashX block header extends the Bitcoin block header with a new field `hashRandomX` to store the result of executing the RandomX algorithm.
+The Snailcoin block header extends the Bitcoin block header with a new field `hashRandomX` to store the result of executing the RandomX algorithm.
 
 | Field | Size (Bytes) |
 |---|---|
@@ -172,7 +172,7 @@ A block header has valid proof of work when both:
 
 In Bitcoin, the block hash must be lower than or equal to the current target `T`, a large 256-bit number, for the block to be accepted by the network.
 
-In ScashX, instead of using the block hash, the RandomX commitment value `CM` must be lower than or equal to the current target `T`:
+In Snailcoin, instead of using the block hash, the RandomX commitment value `CM` must be lower than or equal to the current target `T`:
 - `CM <= T`, meets the target
 - `CM > T`, does not meet the target
 
@@ -193,7 +193,7 @@ Trusted sources such as full nodes must perform full verification of both values
 
 ## 4 Algorithm performance
 
-The ScashX node software provides options to adjust RandomX performance.
+The Snailcoin node software provides options to adjust RandomX performance.
 
 | Option | Purpose | Default |
 |---|---|:---:|
@@ -219,9 +219,9 @@ The implementation is based on the Bitcoin Cash ASERT Difficulty Adjustment Algo
 
 ### 5.1 Algorithm
 
-Block production in ScashX, with an ideal target time of 10 minutes, can be impacted by hash power fluctuation. The ASERT DAA adjusts the network difficulty every block, helping to restore block production to the desired target rate more quickly than the legacy DAA, which only adjusts network difficulty every 2016 blocks. This improves consistency in block times and transaction confirmation reliability. More rationale is provided by the original ASERT DAA authors [2].
+Block production in Snailcoin, with an ideal target time of 10 minutes, can be impacted by hash power fluctuation. The ASERT DAA adjusts the network difficulty every block, helping to restore block production to the desired target rate more quickly than the legacy DAA, which only adjusts network difficulty every 2016 blocks. This improves consistency in block times and transaction confirmation reliability. More rationale is provided by the original ASERT DAA authors [2].
 
-The proposed anchor block for the ASERT calculation is ScashX block height 50 and the activation is at 70.
+The proposed anchor block for the ASERT calculation is Snailcoin block height 50 and the activation is at 70.
 
 #### Implementation
 
@@ -240,11 +240,11 @@ The reference implementation for ASERT DAA is found in Bitcoin Cash Node:
 
 ## 6 Transactions
 
-The ScashX node software makes a number of changes to the default behaviour of the Bitcoin node software. These changes impact transaction propagation across the ScashX network.
+The Snailcoin node software makes a number of changes to the default behaviour of the Bitcoin node software. These changes impact transaction propagation across the Snailcoin network.
 
 ### 6.1 Replace-by-fee
 
-The ScashX node software disables replace-by-fee (RBF).
+The Snailcoin node software disables replace-by-fee (RBF).
 
 The mempool returns to first-seen-rule behaviour and rejects conflicting transactions.
 
@@ -254,60 +254,60 @@ The mempool returns to first-seen-rule behaviour and rejects conflicting transac
 
 ### 6.2 Data carrier
 
-The ScashX node software disables the `-datacarrier` option.
+The Snailcoin node software disables the `-datacarrier` option.
 
 Non-coinbase transactions containing an `OP_RETURN` transaction output remain consensus valid and can be mined into blocks, but they will not be relayed by the node.
 
-ScashX discourages the use of the network for storing data not required to validate a transaction.
+Snailcoin discourages the use of the network for storing data not required to validate a transaction.
 
 ### 6.3 Ordinals Inscriptions
 
-The ScashX node software considers a transaction as non-standard when the following dead code patterns are detected in Tapscript:
+The Snailcoin node software considers a transaction as non-standard when the following dead code patterns are detected in Tapscript:
 - `OP_FALSE OP_IF`
 - `OP_NOTIF OP_TRUE`
 
 Non-standard transactions remain consensus valid and can be mined into blocks, but they will not be relayed by the node.
 
-ScashX discourages the use of the network for storing data not required to validate a transaction.
+Snailcoin discourages the use of the network for storing data not required to validate a transaction.
 
 ## 7 Chain parameters
 
-The ScashX chain modifies the default Bitcoin chain parameters.
+The Snailcoin chain modifies the default Bitcoin chain parameters.
 
 ### 7.1 Network handshake
 
-ScashX adds `0x02` to each of the network magic bytes used by Bitcoin, to define the following defaults:
+Snailcoin adds `0x02` to each of the network magic bytes used by Bitcoin, to define the following defaults:
 
 | Chain | Magic bytes | Notes (Bitcoin + 0x02) |
 |---|---|---|
-| ScashX | `0xfb 0xc0 0xb6 0xdb` | `0xf9beb4d9` + `0x02020202` |
-| ScashX Testnet | `0x0d 0x13 0x0b 0x09` | `0x0b110907` + `0x02020202` |
-| ScashX Regtest | `0xfc 0xc1 0xb7 0xdc` | `0xfabfb5da` + `0x02020202` |
+| Snailcoin | `0xfb 0xc0 0xb6 0xdb` | `0xf9beb4d9` + `0x02020202` |
+| Snailcoin Testnet | `0x0d 0x13 0x0b 0x09` | `0x0b110907` + `0x02020202` |
+| Snailcoin Regtest | `0xfc 0xc1 0xb7 0xdc` | `0xfabfb5da` + `0x02020202` |
 
 ### 7.2 Network ports
 
-ScashX adds `20` to the default Bitcoin port numbers, to define the following defaults:
+Snailcoin adds `20` to the default Bitcoin port numbers, to define the following defaults:
 
 | Chain | RPC | Network | Tor | Notes (Bitcoin + 20) |
 |---|---|---|---|---|
-| ScashX | `8352` | `8353` | `8354` | BTC: 8332, 8333, 9050/9150 |
-| ScashX Testnet | `18352` | `18353` | `18354` | BTC: 18332, 18333 |
-| ScashX Regtest | `18463` | `18464` | `18465` | BTC: 18443, 18444 |
+| Snailcoin | `8352` | `8353` | `8354` | BTC: 8332, 8333, 9050/9150 |
+| Snailcoin Testnet | `18352` | `18353` | `18354` | BTC: 18332, 18333 |
+| Snailcoin Regtest | `18463` | `18464` | `18465` | BTC: 18443, 18444 |
 *(Note: Tor port assignments may need review)*
 
 ### 7.3 Bech32 prefix
 
-ScashX updates the human readable prefix for Bech32 addresses as follows:
+Snailcoin updates the human readable prefix for Bech32 addresses as follows:
 
 | Chain | Prefix |
 |---|:---:|
-| ScashX | scashx |
-| ScashX Testnet | tscashx |
-| ScashX Regtest | rscashx |
+| Snailcoin | scashx |
+| Snailcoin Testnet | tscashx |
+| Snailcoin Regtest | rscashx |
 
 ## 8 JSON-RPC fields
 
-The ScashX node software adds RandomX data fields to the following API endpoints.
+The Snailcoin node software adds RandomX data fields to the following API endpoints.
 
 | API  | Key | Value | Description |
 |---|---|---|---|
